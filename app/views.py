@@ -13,4 +13,8 @@ def index():
 
 @page.route('/about')
 def about():
-    return 'About'
+    return render_template('about.html', title = 'about')
+
+@page.route('/functions')
+def functions():
+    return render_template('functions.html', title = 'functions')
