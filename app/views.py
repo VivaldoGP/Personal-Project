@@ -1,5 +1,5 @@
 from flask import Blueprint #class
-from flask import render_template #functions
+from flask import render_template, request #functions
 
 page = Blueprint('page', __name__) #args('context name', 'instance context')
 
