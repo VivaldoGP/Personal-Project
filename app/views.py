@@ -3,7 +3,7 @@ from flask import Blueprint #class
 #functions
 from flask import render_template, request 
 from .geodesy import grav_normal
-from .models import InputForm
+from .forms import InputForm
 
 page = Blueprint('page', __name__) #args('context name', 'instance context')
 
@@ -19,9 +19,6 @@ def index():
 def about():
     return render_template('about.html', title = 'about')
 
-@page.route('/functions')
-def functions():
-    return render_template('functions.html', title = 'functions')
 
 @page.route('/grav', methods = ['GET', 'POST'])
 def geodesy():

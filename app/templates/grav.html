@@ -1,19 +1,31 @@
 {% extends 'layout.html' %}
+{% from 'helpers/_forms.html' import render_field %}
 
 {% block container %}
-<form method=post action="">
-    <table>
-      {% for field in form %}
-        <tr>
-        <td>{{ field.name }}</td><td>{{ field }}</td>
-        <td>{{ field.label }}</td>
-        </tr>
-      {% endfor %}
-    </table>
-    <p><input type=submit value=Compute></form></p>
-    <p>
-        {% if result != None %}
-        <p>{{ result }}</p> 
-        {% endif %}
-    </p>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<div class="col-md-12 col-md-offset-1">
+    <h3>Gravity</h3>
+    <form class="form-box" method="POST">
+      <div class="form-group">
+        {{ render_field(form.lat, class='form-control',
+        placeholder='Latitud') }}
+      </div>
+      <button type="submit" class="btn btn-primary" name="button">
+        Compute
+      </button>
+    </form>
+</div>
+<br>
+<div>
+  <br>
+  <p class="col-md-12 col-md-offset-1">
+    {% if result != None %}
+        {{ result }}
+    {% endif %}
+  </p>
+</div>
+
+      
 {% endblock %}
