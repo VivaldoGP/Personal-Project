@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block container %}
+<form method=post action="">
+    <table>
+      {% for field in form %}
+        <tr>
+        <td>{{ field.name }}</td><td>{{ field }}</td>
+        <td>{{ field.label }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <p><input type=submit value=Compute></form></p>
+    <p>
+        {% if result != None %}
+        <p>{{ result }}</p> 
+        {% endif %}
+    </p>
+{% endblock %}

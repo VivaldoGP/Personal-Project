@@ -1,5 +1,9 @@
+#class
 from flask import Blueprint #class
-from flask import render_template, request #functions
+#functions
+from flask import render_template, request 
+from .geodesy import grav_normal
+from .models import InputForm
 
 page = Blueprint('page', __name__) #args('context name', 'instance context')
 
@@ -18,3 +22,13 @@ def about():
 @page.route('/functions')
 def functions():
     return render_template('functions.html', title = 'functions')
+
+@page.route('/grav', methods = ['GET', 'POST'])
+def geodesy():
+    form = InputForm(request.form)
+    if request.method == 'POST' and form.validate():
+        result = grav_normal(form.lat.data)
+    else:
+        result = None
+    return render_template('grav.html', title = 'gravity',
+    form=form, result=result)
